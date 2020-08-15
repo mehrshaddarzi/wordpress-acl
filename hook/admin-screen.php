@@ -84,18 +84,17 @@ class Admin_Screen
             return $user_id;
         }
         if ('phone' == $column_name) {
-            return get_user_meta($user_id, 'billing_phone', true);
+            return Helper::get_user_phone_number($user_id);
         }
         if ('name-user' == $column_name) {
-            return User_Helper::get_user_full_name($user_id);
+            return Helper::get_user_full_name($user_id);
         }
         if ('avatar' == $column_name) {
             return '<img src="' . get_avatar_url($user_id) . '" style="width: 50px; height: 50px; border-radius: 50%;">';
         }
         if ('date-reg' == $column_name) {
-            return parsidate("Y-m-d H:i", $user->user_registered, "eng");
+            return date_i18n("Y-m-d H:i", $user->user_registered);
         }
-
 
         return $value;
     }
