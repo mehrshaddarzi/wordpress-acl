@@ -61,7 +61,6 @@ class Admin_Screen
     {
         //$columns['id']           = 'شناسه سیستم';
         $columns['name-user'] = 'نام و نام خانوادگی';
-        $columns['avatar'] = 'آواتار';
         $columns['id'] = 'شناسه';
         $columns['phone'] = 'موبایل';
         $columns['date-reg'] = 'تاریخ ثبت';
@@ -71,7 +70,6 @@ class Admin_Screen
         unset($columns['name']);
         unset($columns['role']);
         unset($columns['email']);
-        unset($columns['wp-user-avatar']);
         return $columns;
     }
 
@@ -88,9 +86,6 @@ class Admin_Screen
         }
         if ('name-user' == $column_name) {
             return Helper::get_user_full_name($user_id);
-        }
-        if ('avatar' == $column_name) {
-            return '<img src="' . get_avatar_url($user_id) . '" style="width: 50px; height: 50px; border-radius: 50%;">';
         }
         if ('date-reg' == $column_name) {
             return date_i18n("Y-m-d H:i", $user->user_registered);

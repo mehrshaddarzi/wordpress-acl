@@ -26,6 +26,54 @@ class Avatar
         // Get avatar Function filter
         // @see https://developer.wordpress.org/reference/functions/get_avatar_data/
         add_filter('pre_get_avatar_data', array($this, 'filter_get_avatar_data'), 10, 2);
+
+        // Add column For users.php
+        add_filter('manage_users_columns', array($this, 'column'), 100);
+        add_action('manage_users_custom_column', array($this, 'column_content'), 10, 3);
+
+        // add avatar url to get UserData
+        add_filter('wordpress_acl_get_user_data', array($this, 'add_avatar_to_user_data'), 10, 2);
+    }
+
+    /**
+     * Add Avatar to User Data
+     *
+     * @param $user_data
+     * @param $user_id
+     * @return mixed
+     */
+    public function add_avatar_to_user_data($user_data, $user_id)
+    {
+        $user_data['avatar'] = get_avatar_url($user_id);
+        return $user_data;
+    }
+
+    /**
+     * Add User Avatar column
+     *
+     * @param $columns
+     * @return mixed
+     */
+    public function column($columns)
+    {
+        $columns['avatar'] = 'آواتار';
+        return $columns;
+    }
+
+    /**
+     * Column Data
+     *
+     * @param $value
+     * @param $column_name
+     * @param $user_id
+     * @return string
+     */
+    public function column_content($value, $column_name, $user_id)
+    {
+        if ('avatar' == $column_name) {
+            return '<img src="' . get_avatar_url($user_id) . '" style="width: 50px; height: 50px; border-radius: 50%;">';
+        }
+        return $value;
     }
 
     /**
@@ -147,7 +195,7 @@ class Avatar
     }
 
     /**
-     * change User Avatar By $_FILE
+     * Change User Avatar By $_FILE
      *
      * @param $file
      * @param bool $user_id
@@ -168,7 +216,7 @@ class Avatar
             require_once(ABSPATH . 'wp-admin/includes/media.php');
             $attachment_id = media_handle_upload($file, 0);
             if (is_wp_error($attachment_id)) {
-                return array('status' => false, 'message' => 'error in upload file');
+                return array('status' => false, 'message' => __('Error in upload avatar file', 'wordpress-acl'));
             }
 
             // Remove Before User Avatar if Exist
@@ -180,11 +228,11 @@ class Avatar
             // Update User Meta
             update_user_meta($user_id, self::$acf_avatar_field_name, $attachment_id);
 
-            // return
+            // Return
             return array('status' => true, 'avatar' => get_avatar_url($user_id), 'attachment_id' => $attachment_id);
         }
 
-        return array('status' => false, 'message' => 'file not found');
+        return array('status' => false, 'message' => __('File not found', 'wordpress-acl'));
     }
 }
 

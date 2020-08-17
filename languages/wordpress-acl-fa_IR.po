@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ACL in WordPress\n"
-"POT-Creation-Date: 2020-08-15 11:26+0430\n"
-"PO-Revision-Date: 2020-08-15 11:27+0430\n"
+"POT-Creation-Date: 2020-08-17 20:30+0430\n"
+"PO-Revision-Date: 2020-08-17 20:35+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -21,41 +21,223 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: additional/mobile-login.php:278 hook/admin-screen.php:137
+#: additional/avatar/avatar.php:219
+msgid "Error in upload avatar file"
+msgstr "خطا در آپلود فایل آواتار رخ داده است"
+
+#: additional/avatar/avatar.php:235
+msgid "File not found"
+msgstr "فایل یافت نشد"
+
+#: additional/avatar/rewrite.php:33
+#, php-format
+msgid "File size must be excately %s MB."
+msgstr "حداکثر حجم فایل می بایست %s مگابایت باشد."
+
+#: additional/avatar/rewrite.php:36
+msgid "Please select png or jpg file"
+msgstr "لطفا یک فایل با پسوند jpg یا png انتخاب کنید"
+
+#: additional/avatar/rewrite.php:62
+msgid "Please select an image"
+msgstr "لطفا یک فایل عکس انتخاب کنید"
+
+#: additional/favorite/rewrite.php:22
+msgid "Post not exist."
+msgstr ""
+
+#: additional/mobile-login/mobile-login.php:31
+msgid "mobile"
+msgstr "شماره همراه"
+
+#: additional/mobile-login/mobile-login.php:34
+msgid "Invalid mobile or incorrect password."
+msgstr "شماره همراه یا رمز عبور اشتباه می باشد."
+
+#: additional/mobile-login/mobile-login.php:37
+msgid "No user was found with this mobile number."
+msgstr "هیچ کاربری با این شماره موبایل یافت نشد."
+
+#: additional/mobile-login/mobile-login.php:40
+msgid "This mobile is already registered."
+msgstr "این شماره همراه قبلا ثبت نام شده است."
+
+#: additional/mobile-login/mobile-login.php:117
+msgid "The registration authentication code was sent to your mobile number."
+msgstr "کد احراز هویت به شماره موبایل شما ارسال گردید."
+
+#: additional/mobile-login/mobile-login.php:132
+msgid "Your authentication code is incorrect"
+msgstr "کد احراز هویت اشتباه می باشد"
+
+#: additional/mobile-login/mobile-login.php:165
+msgid "Your authentication code has expired"
+msgstr "کد احراز هویت شما منقضی شده است"
+
+#: additional/mobile-login/mobile-login.php:180
+msgid "Use tags"
+msgstr "استفاده تگ"
+
+#: additional/mobile-login/mobile-login.php:181 rewrite/rewrite.php:340
+msgid "First name"
+msgstr "نام"
+
+#: additional/mobile-login/mobile-login.php:182 rewrite/rewrite.php:343
+msgid "Last name"
+msgstr "نام خانوادگی"
+
+#: additional/mobile-login/mobile-login.php:183
+msgid "User id"
+msgstr "شناسه کاربر"
+
+#: additional/mobile-login/mobile-login.php:184
+msgid "Password"
+msgstr "رمز عبور"
+
+#: additional/mobile-login/mobile-login.php:185
+msgid "UserLogin"
+msgstr "نام کاربری"
+
+#: additional/mobile-login/mobile-login.php:186
+msgid "Email"
+msgstr "ایمیل"
+
+#: additional/mobile-login/mobile-login.php:187
+msgid "Code"
+msgstr "کد"
+
+#: additional/mobile-login/mobile-login.php:193
+msgid "Forget Password"
+msgstr "فراموشی رمز عبور"
+
+#: additional/mobile-login/mobile-login.php:213
+msgid "Hi [first-name] [last-name], Your New Password is [password]"
+msgstr "سلام [first-name] [last-name] , رمز عبور جدید شما  [password] می باشد"
+
+#: additional/mobile-login/mobile-login.php:223
+msgid "New user register"
+msgstr "ثبت نام کاربر جدید"
+
+#: additional/mobile-login/mobile-login.php:243
+msgid ""
+"Hi [first-name] [last-name], Your login profile is, username: [user-login] "
+"and password: [password]"
+msgstr ""
+"سلام [first-name] [last-name] , اطلاعات ورود شما به سایت شامل نام کاربری: "
+"[user-login] و رمز عبور [password] می باشد"
+
+#: additional/mobile-login/mobile-login.php:253
+msgid "New user register Code"
+msgstr "کد احراز هویت ثبت نام کاربر"
+
+#: additional/mobile-login/mobile-login.php:273
+msgid "Your register code is: [code]"
+msgstr "کد احراز هویت ثبت نام شما:  [code]"
+
+#: additional/mobile-login/mobile-login.php:741 hook/admin-screen.php:131
 msgid ""
 "<p><strong>خطا</strong>: لطفا از خط تیره به جای قاصله در نام کاربری استفاده "
 "کنید</p>"
 msgstr ""
 
-#: additional/mobile-login.php:289 hook/admin-screen.php:143
+#: additional/mobile-login/mobile-login.php:752 hook/admin-screen.php:137
 msgid "<p><strong>خطا</strong>: "
 msgstr ""
 
-#: additional/mobile-login.php:296 hook/admin-screen.php:150
+#: additional/mobile-login/mobile-login.php:759 hook/admin-screen.php:144
 msgid "<p><strong>خطا</strong>: لطفا نام را وارد نمایید</p>"
 msgstr ""
 
-#: additional/mobile-login.php:299 hook/admin-screen.php:153
+#: additional/mobile-login/mobile-login.php:762 hook/admin-screen.php:147
 msgid "<p><strong>خطا</strong>: نام میبایست فارسی باشد</p>"
 msgstr ""
 
-#: additional/mobile-login.php:305 hook/admin-screen.php:159
+#: additional/mobile-login/mobile-login.php:768 hook/admin-screen.php:153
 msgid "<p><strong>خطا</strong>: لطفا نام خانوادگی را وارد نمایید</p>"
 msgstr ""
 
-#: additional/mobile-login.php:308 hook/admin-screen.php:162
+#: additional/mobile-login/mobile-login.php:771 hook/admin-screen.php:156
 msgid "<p><strong>خطا</strong>: نام خانوادگی میبایست فارسی باشد</p>"
 msgstr ""
 
-#: wordpress-acl.php:214
+#: class/email.php:21
+msgid "Email Settings"
+msgstr "تنظیمات ایمیل"
+
+#: class/email.php:25
+msgid "Active email system"
+msgstr "فعال سازی سیستم ایمیل"
+
+#: class/email.php:38
+msgid "no"
+msgstr "خیر"
+
+#: class/email.php:39
+msgid "yes"
+msgstr "آری"
+
+#: rewrite/rewrite.php:38 rewrite/rewrite.php:184
+msgid "username"
+msgstr "نام کاربری"
+
+#: rewrite/rewrite.php:43
+msgid "password"
+msgstr "رمز عبور"
+
+#: rewrite/rewrite.php:65
+msgid "Invalid username, email address or incorrect password."
+msgstr "نام کاربری ، ایمیل یا رمز عبور اشتباه می باشد."
+
+#: rewrite/rewrite.php:88
+msgid "You have been successfully logged out"
+msgstr "شما با موفقیت خارج شده اید"
+
+#: rewrite/rewrite.php:148
+msgid "No username or email found."
+msgstr "نام کاربری یا ایمیل یافت نشد."
+
+#: rewrite/rewrite.php:191
+msgid "This username is already registered."
+msgstr "این نام کاربری قبلا ثبت شده است."
+
+#: rewrite/rewrite.php:207 rewrite/rewrite.php:362
+msgid "Invalid email address."
+msgstr "آدرس ایمیل نامعتبر هست."
+
+#: rewrite/rewrite.php:215 rewrite/rewrite.php:370
+msgid "This email is already registered."
+msgstr "این ایمیل قبلا ثبت شده است."
+
+#: rewrite/rewrite.php:281
+msgid "Passwords Don't Match"
+msgstr "رمز های عبور وارد شده مطابقت ندارند."
+
+#: rewrite/rewrite.php:291
+#, php-format
+msgid "Password must be at least %s characters long."
+msgstr "تعداد کاراکتر رمز عبور حداقل می بایست %s  کاراکتر باشد"
+
+#: rewrite/rewrite.php:302
+msgid "Your current password is incorrect."
+msgstr "رمز عبور فعلی شما اشتباه می باشد."
+
+#: rewrite/rewrite.php:314
+msgid "Password changed successfully"
+msgstr "رمز عبور با موفقیت تغییر یافت."
+
+#: rewrite/rewrite.php:393
+msgid "User info edited successfully"
+msgstr "مشخصات کاربری با موفقیت ویرایش گردید"
+
+#: wordpress-acl.php:218
 msgid "Your installed PHP Version is:"
 msgstr ""
 
-#: wordpress-acl.php:215
+#: wordpress-acl.php:219
 msgid "The <strong>WordPress ACL</strong> plugin requires PHP version <strong>"
 msgstr ""
 
-#: wordpress-acl.php:215
+#: wordpress-acl.php:219
 msgid "</strong> or greater."
 msgstr ""
 

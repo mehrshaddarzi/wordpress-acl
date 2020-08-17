@@ -13,24 +13,37 @@ class Helper
     public static function get($user_id = false)
     {
 
-        # Get User ID
+        // Get User ID
         $user_id = $user_id ? $user_id : get_current_user_id();
 
-        # Get User Data
+        // Get User Data
         $user_data = get_userdata($user_id);
         $user_info = get_object_vars($user_data->data);
+        unset($user_info['user_pass']);
 
-        # Get User roles
+        // Get User roles
         $user_info['role'] = $user_data->roles;
 
-        # Get User Caps
+        // Get User Caps
         $user_info['cap'] = $user_data->caps;
 
-        # Get User Meta
+        // Get User Meta
         $user_info['meta'] = array_map(function ($a) {
             return $a[0];
         }, get_user_meta($user_id));
 
+        // Remove Unused data
+        if (!is_admin()) {
+            unset($user_info['meta']['session_tokens']);
+            foreach ($user_info['meta'] as $meta_key => $meta_value) {
+                if (substr($meta_key, 0, 1) == "_" || substr($meta_key, 0, 8) == "meta-box" || substr($meta_key, 0, 13) == "metaboxhidden") {
+                    unset($user_info['meta'][$meta_key]);
+                }
+            }
+        }
+
+        // Return Data
+        $user_info = apply_filters('wordpress_acl_get_user_data', $user_info, $user_id);
         return $user_info;
     }
 
@@ -254,6 +267,18 @@ class Helper
             }
             return $list;
         }
+    }
+
+    /**
+     * Set Current User
+     *
+     * @param $user_id
+     * @param bool $remember
+     */
+    public static function set_current_user($user_id, $remember = true)
+    {
+        wp_set_current_user($user_id);
+        wp_set_auth_cookie($user_id, $remember);
     }
 
 }

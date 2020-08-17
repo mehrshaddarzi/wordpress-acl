@@ -168,9 +168,11 @@ class WordPress_ACL
          * Basic Class
          */
         require_once self::$plugin_path . '/class/helper.php';
+        require_once self::$plugin_path . '/class/email.php';
         if (get_locale() == "fa_IR") {
             include_once dirname(__FILE__) . '/class/persian.php';
         }
+        require_once self::$plugin_path . '/rewrite/rewrite.php';
 
         /**
          * Custom Hook
@@ -182,8 +184,10 @@ class WordPress_ACL
         /**
          * Additional
          */
-        require_once self::$plugin_path . '/additional/avatar.php';
-        require_once self::$plugin_path . '/additional/mobile-login.php';
+        require_once self::$plugin_path . '/additional/avatar/avatar.php';
+        require_once self::$plugin_path . '/additional/avatar/rewrite.php';
+        require_once self::$plugin_path . '/additional/mobile-login/mobile-login.php';
+        require_once self::$plugin_path . '/additional/mobile-login/rewrite.php';
         require_once self::$plugin_path . '/additional/favorite/favorite.php';
         require_once self::$plugin_path . '/additional/favorite/rewrite.php';
 
