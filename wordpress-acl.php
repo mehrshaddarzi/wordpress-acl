@@ -160,7 +160,7 @@ class WordPress_ACL
     }
 
     /**
-     * Load Gateway List
+     * Load PHP Files
      */
     public function load_php_file()
     {

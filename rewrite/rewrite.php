@@ -75,7 +75,7 @@ class user
      *
      * @return void
      */
-    public function logout()
+    public static function logout()
     {
         // Check User Logged IN
         WordPress_Rewrite_API_Request::auth_error();
@@ -164,7 +164,7 @@ class user
      * @Rewrite_Ajax
      * @return void
      */
-    public function register()
+    public static function register()
     {
         // If User Logged Not Allow Register
         if (is_user_logged_in()) {
@@ -259,7 +259,7 @@ class user
     /**
      * Change User Password
      */
-    public function change_password()
+    public static function change_password()
     {
         // Check User Login
         WordPress_Rewrite_API_Request::auth_error();
@@ -320,7 +320,7 @@ class user
      *
      * @return void
      */
-    public function edit()
+    public static function edit()
     {
         // Check User Login
         WordPress_Rewrite_API_Request::auth_error();
