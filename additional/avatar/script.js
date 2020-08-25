@@ -28,7 +28,7 @@ jQuery(document).ready(function ($) {
             }
 
             // Send Data
-            window.rewrite_api_method.request('avatar/change', 'POST', form_data);
+            window.rewrite_api_method.request('avatar/change', 'POST', form_data, $tag);
         }
     };
 

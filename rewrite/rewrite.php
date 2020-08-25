@@ -10,11 +10,35 @@ class user
     public function __construct()
     {
         add_action('wp_enqueue_scripts', array($this, '_register_js_script'), 7);
+
+        add_action('wp', array($this, '_user_logout'));
+        add_filter('rewrite_api_request_overhang_alert', function ($array) {
+            $array['acl_logout'] = __('You have successfully logged out', 'wordpress-acl');
+            return $array;
+        });
     }
 
     public function _register_js_script()
     {
         wp_enqueue_script('wordpress-acl', \WordPress_ACL::$plugin_url . '/rewrite/script.js', array('jquery', 'wp-rewrite-api'), \WordPress_ACL::$plugin_version, true);
+    }
+
+    public function _user_logout()
+    {
+        if (isset($_GET['user_logout']) and $_GET['user_logout'] == "true") {
+
+            // Logout From System
+            wp_logout();
+
+            // Url
+            $url = \WordPress_Rewrite_API_Request_Ui_Component::generate_overhang_link(
+                remove_query_arg('user_logout'),
+                'success',
+                'acl_logout'
+            );
+            wp_redirect(apply_filters('wordpress_acl_url_after_logout', $url));
+            exit;
+        }
     }
 
     /**
@@ -67,7 +91,7 @@ class user
         }
 
         // Return Data
-        wp_send_json_success(Helper::get($user->ID), 200);
+        wp_send_json_success(apply_filters('wordpress_acl_login_return_data', Helper::get($user->ID)), 200);
     }
 
     /**
@@ -108,7 +132,7 @@ class user
             WordPress_Rewrite_API_Request::empty_param('user_by');
         }
         if (empty($user_value)) {
-            WordPress_Rewrite_API_Request::empty_param('user_value');
+            WordPress_Rewrite_API_Request::empty_param(apply_filters('wordpress_acl_user_search_value', __('user_value', 'wordpress-acl')));
         }
 
         // Search User
@@ -134,7 +158,7 @@ class user
         $user = apply_filters('wordpress_acl_search_user', $user);
 
         // Action After Search User
-        do_action('wordpress_acl_search_user', $user_by, $user_value, $user); //$user === false if not Found
+        do_action('wordpress_acl_search_user_action', $user_by, $user_value, $user); //$user === false if not Found
 
         // Check Has User
         if (!$user) {

@@ -36,8 +36,12 @@ class Favorite_Post
         update_user_meta($user_id, self::user_meta_favorite_name(), $current_favorite_list);
     }
 
-    public static function get($user_id, $count = false, $category = '')
+    public static function get($user_id = false, $count = false, $category = '')
     {
+        if (!$user_id) {
+            $user_id = get_current_user_id();
+        }
+
         $favorite_list = get_user_meta($user_id, self::user_meta_favorite_name(), true);
         if (empty($favorite_list) || !is_array($favorite_list)) {
             if ($count) {
@@ -81,15 +85,33 @@ class Favorite_Post
     {
         // Get Current Favorite List
         $current_favorite_list = self::get($user_id);
+        $new_favorite_list = array();
         foreach ($current_favorite_list as $category => $list) {
-            // Remove From List By Value
-            if (($key = array_search((int)$post_id, $list)) !== false) {
-                unset($current_favorite_list[$category][$key]);
+            $new_list = $list;
+            if (in_array($post_id, $list)) {
+                $new_list = array_diff($list, array($post_id));
             }
+            $new_favorite_list[$category] = array_values($new_list);
         }
 
         // Save Again
-        update_user_meta($user_id, self::user_meta_favorite_name(), $current_favorite_list);
+        update_user_meta($user_id, self::user_meta_favorite_name(), $new_favorite_list);
+    }
+
+    public static function has($user_id = false, $post_id = 0)
+    {
+        if (!$user_id) {
+            $user_id = get_current_user_id();
+        }
+
+        $favorite_list = self::get($user_id);
+        foreach ($favorite_list as $category => $list) {
+            if (in_array($post_id, $list)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public static function get_post_types($return = 'key')

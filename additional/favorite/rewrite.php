@@ -108,6 +108,41 @@ class favorite_post
         ));
         wp_send_json_success($return, 200);
     }
+
+    public static function toggle()
+    {
+        // Check Auth
+        WordPress_Rewrite_API_Request::auth_error();
+
+        // Check Params
+        if (!isset($_REQUEST['post_id'])) {
+            WordPress_Rewrite_API_Request::missing_params();
+        }
+
+        // Sanitize Data
+        $user_id = get_current_user_id();
+        $post_id = sanitize_text_field($_REQUEST['post_id']);
+        $category = '';
+        if (isset($_REQUEST['category'])) {
+            $category = sanitize_text_field($_REQUEST['category']);
+        }
+
+        // Valid Post_id
+        self::_validation_post_id($post_id);
+
+        // Check Exist Post ID
+        $result = array();
+        if (\WordPress_ACL\Favorite_Post::has($user_id, $post_id)) {
+            \WordPress_ACL\Favorite_Post::remove($user_id, $post_id);
+            $result['action'] = 'remove';
+        } else {
+            \WordPress_ACL\Favorite_Post::add($user_id, $post_id, $category);
+            $result['action'] = 'add';
+        }
+
+        // Return Success
+        wp_send_json_success(array_merge(self::_return_list(), $result), 200);
+    }
 }
 
 new favorite_post();

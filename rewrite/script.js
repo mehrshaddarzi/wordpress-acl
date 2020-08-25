@@ -15,46 +15,36 @@ jQuery(document).ready(function ($) {
             };
 
             // extra parameters
-            ["user_login", "user_password"].forEach(function (item, index) {
-                let input = $('#' + item);
-                if (input.length && input.val().length > 0) {
-                    arg[item] = input.val();
-                }
-            });
+            if ($tag !== false) {
+                arg = $.extend(arg, window.rewrite_api_method.get_form_inputs($tag));
 
-            // prepare remember
-            if ($('input#remember').length && $("input#remember").prop('checked') === true) {
-                arg['remember'] = 'yes';
+                // prepare remember
+                let form_name = $tag.attr('data-form');
+                if ($('input#remember' + '[data-form=' + form_name + ']').length && $("input#remember").prop('checked') === true) {
+                    arg['remember'] = 'yes';
+                }
             }
 
             // Send Data
-            window.rewrite_api_method.request('user/login', 'GET', arg);
+            window.rewrite_api_method.request('user/login', 'GET', arg, $tag);
         },
         logout_user: function ($tag = false) {
-            window.rewrite_api_method.request('user/logout', 'GET');
+            window.rewrite_api_method.request('user/logout', 'GET', {}, $tag);
         },
         search_user: function ($tag = false, $user_by = '', $user_value = '') {
-            // Prepare user_by
-            if ($('#user_by').length) {
-                $user_by = $('#user_by').val();
-            }
-
-            // prepare user_value
-            if ($('#user_value').length) {
-                $user_value = $('#user_value').val();
-            }
-
             // Check Action
             let arg = {
                 'user_by': $user_by,
                 'user_value': $user_value
             };
-            if ($tag.attr('data-do-action')) {
-                arg['do_action'] = $tag.attr('data-action');
+
+            // Prepare tags
+            if ($tag !== false) {
+                arg = $.extend(arg, window.rewrite_api_method.get_form_inputs($tag));
             }
 
             // Send Request
-            window.rewrite_api_method.request('user/search', 'GET', arg);
+            window.rewrite_api_method.request('user/search', 'GET', arg, $tag);
         },
         register_user: function ($tag = false, $user_login = '') {
 
@@ -63,21 +53,13 @@ jQuery(document).ready(function ($) {
                 'user_login': $user_login
             };
 
-            // extra parameters
-            ["user_login", "user_email", "user_pass", "first_name", "last_name", "display_name"].forEach(function (item, index) {
-                let input = $('#' + item);
-                if (input.length && input.val().length > 0) {
-                    arg[item] = input.val();
-                }
-            });
-
-            // Do Action
-            if ($tag.attr('data-do-action')) {
-                arg['do_action'] = $tag.attr('data-action');
+            // Extra parameters
+            if ($tag !== false) {
+                arg = $.extend(arg, window.rewrite_api_method.get_form_inputs($tag));
             }
 
             // Send Data
-            window.rewrite_api_method.request('user/register', 'POST', arg);
+            window.rewrite_api_method.request('user/register', 'GET', arg, $tag);
         },
         change_password_user: function ($tag = false, $now_pass = '', $new_pass = '', $new_pass_2 = '') {
 
@@ -95,7 +77,7 @@ jQuery(document).ready(function ($) {
             });
 
             // Send Data
-            window.rewrite_api_method.request('user/change_password', 'POST', arg);
+            window.rewrite_api_method.request('user/change_password', 'POST', arg, $tag);
         },
         edit_user: function ($tag = false, $first_name = '', $last_name = '') {
 
@@ -114,7 +96,7 @@ jQuery(document).ready(function ($) {
             });
 
             // Send Data
-            window.rewrite_api_method.request('user/edit', 'POST', arg);
+            window.rewrite_api_method.request('user/edit', 'POST', arg, $tag);
         }
     };
 

@@ -30,6 +30,9 @@ class Mobile_Login
         add_filter('wordpress_acl_user_login_name', function () {
             return __('mobile', 'wordpress-acl');
         });
+        add_filter('wordpress_acl_user_search_value', function () {
+            return __('mobile', 'wordpress-acl');
+        });
         add_filter('wordpress_acl_credentials_error_login', function () {
             return __('Invalid mobile or incorrect password.', 'wordpress-acl');
         });
@@ -40,7 +43,7 @@ class Mobile_Login
             return __('This mobile is already registered.', 'wordpress-acl');
         });
         add_action('wordpress_acl_search_user_success', array($this, 'forget_password_send_code'), 10, 2);
-        add_action('wordpress_acl_search_user', array($this, 'register_send_code'), 10, 3);
+        add_action('wordpress_acl_search_user_action', array($this, 'register_send_code'), 10, 3);
         add_action('wordpress_acl_user_register_custom_fields', array($this, 'check_register_code'));
 
         // Disable Email Setting ACF system in WordPress ACL
@@ -87,7 +90,7 @@ class Mobile_Login
     public function register_send_code($user_by, $user_value, $user)
     {
         // Check Only For Mobile
-        if ($user_by != 'mobile') {
+        if ($user_by != 'billing_phone') {
             return;
         }
 
@@ -101,6 +104,22 @@ class Mobile_Login
 
             // Get User Mobile
             $user_mobile = $user_value;
+
+            // Check Validation Mobile Number
+            $mobile_check = Persian_ACL::validate_mobile($user_mobile);
+            if ($mobile_check['success'] === false) {
+                wp_send_json_error(array(
+                    'message' => $mobile_check['text']
+                ), 400);
+            }
+
+            // Check User Before Exist
+            if (username_exists($user_mobile) != false) {
+                wp_send_json_error(array(
+                    'code' => 'already_register_login',
+                    'message' => apply_filters('wordpress_acl_exists_username_error', __('This username is already registered.', 'wordpress-acl'))
+                ), 400);
+            }
 
             // Generate New Code
             $code = self::generate_new_otp_code('mobile', $user_mobile, $user_id);
@@ -163,6 +182,28 @@ class Mobile_Login
         if (self::check_expire_time_user_otp($code_query) === false) {
             wp_send_json_error(array(
                 'message' => __('Your authentication code has expired', 'wordpress-acl')
+            ), 400);
+        }
+
+        // Check Persian first_name and last_name
+        if(empty($_REQUEST['first_name'])) {
+            wp_send_json_error(array(
+                'message' => 'لطفا نام خود را وارد نمایید'
+            ), 400);
+        }
+        if(empty($_REQUEST['last_name'])) {
+            wp_send_json_error(array(
+                'message' => 'لطفا نام خانوادگی خود را وارد نمایید'
+            ), 400);
+        }
+        if (Persian_ACL::check_persian_input($_REQUEST['first_name']) ===false) {
+            wp_send_json_error(array(
+                'message' => __('لطفا نام خود را به فارسی وارد کنید', 'wordpress-acl')
+            ), 400);
+        }
+        if (Persian_ACL::check_persian_input($_REQUEST['last_name']) ===false) {
+            wp_send_json_error(array(
+                'message' => 'لطفا نام خانوادگی خود را به فارسی تایپ کنید'
             ), 400);
         }
     }
@@ -312,7 +353,7 @@ class Mobile_Login
         $code = rand(10000, 99999);
         wp_set_password($code, $user_id);
         $get_sms_text = \WP_SMS_Helper::get_text_message(array(
-            'option_name' => 'sms-reset-password',
+            'option_name' => 'sms-new-user-register',
             'params' => array_merge(self::generate_default_sms_data($user_id), array('[password]' => $code))
         ));
         \WP_SMS_Helper::send_sms($user->user_login, $get_sms_text);
@@ -520,7 +561,7 @@ class Mobile_Login
 
         // Check Before User ID
         if ($user_id == 0) {
-            if ($login_by = 'email') {
+            if ($login_by == 'email') {
                 $user = get_user_by('email', $value);
                 if ($user != false) {
                     $user_id = $user->ID;

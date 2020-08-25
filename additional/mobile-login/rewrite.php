@@ -7,7 +7,7 @@ class otp
 
     public function __construct()
     {
-        //add_action('wp_enqueue_scripts', array($this, '_register_js_script'), 8);
+        add_action('wp_enqueue_scripts', array($this, '_register_js_script'), 8);
     }
 
     public function _register_js_script()

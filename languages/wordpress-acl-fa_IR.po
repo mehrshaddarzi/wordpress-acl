@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ACL in WordPress\n"
-"POT-Creation-Date: 2020-08-17 20:30+0430\n"
-"PO-Revision-Date: 2020-08-17 20:35+0430\n"
+"POT-Creation-Date: 2020-08-25 09:42+0430\n"
+"PO-Revision-Date: 2020-08-25 11:36+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -44,7 +44,7 @@ msgstr "لطفا یک فایل عکس انتخاب کنید"
 
 #: additional/favorite/rewrite.php:22
 msgid "Post not exist."
-msgstr ""
+msgstr "پست یافت نشد."
 
 #: additional/mobile-login/mobile-login.php:31
 msgid "mobile"
@@ -78,11 +78,11 @@ msgstr "کد احراز هویت شما منقضی شده است"
 msgid "Use tags"
 msgstr "استفاده تگ"
 
-#: additional/mobile-login/mobile-login.php:181 rewrite/rewrite.php:340
+#: additional/mobile-login/mobile-login.php:181 rewrite/rewrite.php:360
 msgid "First name"
 msgstr "نام"
 
-#: additional/mobile-login/mobile-login.php:182 rewrite/rewrite.php:343
+#: additional/mobile-login/mobile-login.php:182 rewrite/rewrite.php:363
 msgid "Last name"
 msgstr "نام خانوادگی"
 
@@ -176,56 +176,60 @@ msgstr "خیر"
 msgid "yes"
 msgstr "آری"
 
-#: rewrite/rewrite.php:38 rewrite/rewrite.php:184
+#: rewrite/rewrite.php:16
+msgid "You have successfully logged out"
+msgstr "شما با موفقیت خارج شده اید"
+
+#: rewrite/rewrite.php:58 rewrite/rewrite.php:204
 msgid "username"
 msgstr "نام کاربری"
 
-#: rewrite/rewrite.php:43
+#: rewrite/rewrite.php:63
 msgid "password"
 msgstr "رمز عبور"
 
-#: rewrite/rewrite.php:65
+#: rewrite/rewrite.php:85
 msgid "Invalid username, email address or incorrect password."
 msgstr "نام کاربری ، ایمیل یا رمز عبور اشتباه می باشد."
 
-#: rewrite/rewrite.php:88
+#: rewrite/rewrite.php:108
 msgid "You have been successfully logged out"
 msgstr "شما با موفقیت خارج شده اید"
 
-#: rewrite/rewrite.php:148
+#: rewrite/rewrite.php:168
 msgid "No username or email found."
 msgstr "نام کاربری یا ایمیل یافت نشد."
 
-#: rewrite/rewrite.php:191
+#: rewrite/rewrite.php:211
 msgid "This username is already registered."
 msgstr "این نام کاربری قبلا ثبت شده است."
 
-#: rewrite/rewrite.php:207 rewrite/rewrite.php:362
+#: rewrite/rewrite.php:227 rewrite/rewrite.php:382
 msgid "Invalid email address."
 msgstr "آدرس ایمیل نامعتبر هست."
 
-#: rewrite/rewrite.php:215 rewrite/rewrite.php:370
+#: rewrite/rewrite.php:235 rewrite/rewrite.php:390
 msgid "This email is already registered."
 msgstr "این ایمیل قبلا ثبت شده است."
 
-#: rewrite/rewrite.php:281
+#: rewrite/rewrite.php:301
 msgid "Passwords Don't Match"
 msgstr "رمز های عبور وارد شده مطابقت ندارند."
 
-#: rewrite/rewrite.php:291
+#: rewrite/rewrite.php:311
 #, php-format
 msgid "Password must be at least %s characters long."
 msgstr "تعداد کاراکتر رمز عبور حداقل می بایست %s  کاراکتر باشد"
 
-#: rewrite/rewrite.php:302
+#: rewrite/rewrite.php:322
 msgid "Your current password is incorrect."
 msgstr "رمز عبور فعلی شما اشتباه می باشد."
 
-#: rewrite/rewrite.php:314
+#: rewrite/rewrite.php:334
 msgid "Password changed successfully"
 msgstr "رمز عبور با موفقیت تغییر یافت."
 
-#: rewrite/rewrite.php:393
+#: rewrite/rewrite.php:413
 msgid "User info edited successfully"
 msgstr "مشخصات کاربری با موفقیت ویرایش گردید"
 
