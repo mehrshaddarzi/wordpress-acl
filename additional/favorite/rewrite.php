@@ -24,13 +24,13 @@ class favorite_post
         }
     }
 
-    public static function _return_list()
+    public static function _return_list($type = '')
     {
         return apply_filters('woocommerce_acl_favorite_list_return', array(
             'html' => '',
             'ids' => \WordPress_ACL\Favorite_Post::get(get_current_user_id()),
             'count' => \WordPress_ACL\Favorite_Post::get(get_current_user_id(), true),
-        ));
+        ), $type);
     }
 
     public static function add()
@@ -58,7 +58,7 @@ class favorite_post
         \WordPress_ACL\Favorite_Post::add($user_id, $post_id, $category);
 
         // Return Success
-        wp_send_json_success(self::_return_list(), 200);
+        wp_send_json_success(self::_return_list('add'), 200);
     }
 
     public static function remove()
@@ -82,7 +82,7 @@ class favorite_post
         \WordPress_ACL\Favorite_Post::remove($user_id, $post_id);
 
         // Return Success
-        wp_send_json_success(self::_return_list(), 200);
+        wp_send_json_success(self::_return_list('remove'), 200);
     }
 
     public static function get()
@@ -105,7 +105,7 @@ class favorite_post
         $return = apply_filters('woocommerce_acl_favorite_list_return', array(
             'list' => \WordPress_ACL\Favorite_Post::get($user_id, $count, $category),
             'count' => \WordPress_ACL\Favorite_Post::get(get_current_user_id(), true)
-        ));
+        ), 'get');
         wp_send_json_success($return, 200);
     }
 
@@ -141,7 +141,7 @@ class favorite_post
         }
 
         // Return Success
-        wp_send_json_success(array_merge(self::_return_list(), $result), 200);
+        wp_send_json_success(array_merge(self::_return_list('toggle'), $result), 200);
     }
 }
 

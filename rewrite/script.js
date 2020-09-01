@@ -69,15 +69,14 @@ jQuery(document).ready(function ($) {
                 'new_pass': $new_pass,
                 'new_pass_2': $new_pass_2,
             };
-            ["now_pass", "new_pass", "new_pass_2"].forEach(function (item, index) {
-                let input = $('#' + item);
-                if (input.length && input.val().length > 0) {
-                    arg[item] = input.val();
-                }
-            });
+
+            // Prepare tags
+            if ($tag !== false) {
+                arg = $.extend(arg, window.rewrite_api_method.get_form_inputs($tag));
+            }
 
             // Send Data
-            window.rewrite_api_method.request('user/change_password', 'POST', arg, $tag);
+            window.rewrite_api_method.request('user/change_password', 'GET', arg, $tag);
         },
         edit_user: function ($tag = false, $first_name = '', $last_name = '') {
 
@@ -88,12 +87,9 @@ jQuery(document).ready(function ($) {
             };
 
             // extra parameters
-            ["first_name", "last_name"].forEach(function (item, index) {
-                let input = $('#' + item);
-                if (input.length && input.val().length > 0) {
-                    arg[item] = input.val();
-                }
-            });
+            if ($tag !== false) {
+                arg = $.extend(arg, window.rewrite_api_method.get_form_inputs($tag));
+            }
 
             // Send Data
             window.rewrite_api_method.request('user/edit', 'POST', arg, $tag);

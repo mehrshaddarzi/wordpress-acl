@@ -12,7 +12,7 @@ class Helper
      */
     public static function get($user_id = false)
     {
-
+        //@TODO Use wp_set_cache system similar woocommerce product git
         // Get User ID
         $user_id = $user_id ? $user_id : get_current_user_id();
 
@@ -23,6 +23,7 @@ class Helper
 
         // Get User roles
         $user_info['role'] = $user_data->roles;
+        //if ( in_array( 'author', (array) $user->roles ) ) {}
 
         // Get User Caps
         $user_info['cap'] = $user_data->caps;

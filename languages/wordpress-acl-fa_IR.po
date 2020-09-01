@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ACL in WordPress\n"
-"POT-Creation-Date: 2020-08-25 09:42+0430\n"
-"PO-Revision-Date: 2020-08-25 11:36+0430\n"
+"POT-Creation-Date: 2020-08-25 18:51+0430\n"
+"PO-Revision-Date: 2020-08-25 18:51+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -47,78 +47,87 @@ msgid "Post not exist."
 msgstr "پست یافت نشد."
 
 #: additional/mobile-login/mobile-login.php:31
+#: additional/mobile-login/mobile-login.php:34
 msgid "mobile"
 msgstr "شماره همراه"
 
-#: additional/mobile-login/mobile-login.php:34
+#: additional/mobile-login/mobile-login.php:37
 msgid "Invalid mobile or incorrect password."
 msgstr "شماره همراه یا رمز عبور اشتباه می باشد."
 
-#: additional/mobile-login/mobile-login.php:37
+#: additional/mobile-login/mobile-login.php:40
 msgid "No user was found with this mobile number."
 msgstr "هیچ کاربری با این شماره موبایل یافت نشد."
 
-#: additional/mobile-login/mobile-login.php:40
+#: additional/mobile-login/mobile-login.php:43
 msgid "This mobile is already registered."
 msgstr "این شماره همراه قبلا ثبت نام شده است."
 
-#: additional/mobile-login/mobile-login.php:117
+#: additional/mobile-login/mobile-login.php:120 rewrite/rewrite.php:215
+msgid "This username is already registered."
+msgstr "این نام کاربری قبلا ثبت شده است."
+
+#: additional/mobile-login/mobile-login.php:136
 msgid "The registration authentication code was sent to your mobile number."
 msgstr "کد احراز هویت به شماره موبایل شما ارسال گردید."
 
-#: additional/mobile-login/mobile-login.php:132
+#: additional/mobile-login/mobile-login.php:151
 msgid "Your authentication code is incorrect"
 msgstr "کد احراز هویت اشتباه می باشد"
 
-#: additional/mobile-login/mobile-login.php:165
+#: additional/mobile-login/mobile-login.php:184
 msgid "Your authentication code has expired"
 msgstr "کد احراز هویت شما منقضی شده است"
 
-#: additional/mobile-login/mobile-login.php:180
+#: additional/mobile-login/mobile-login.php:201
+msgid "لطفا نام خود را به فارسی وارد کنید"
+msgstr ""
+
+#: additional/mobile-login/mobile-login.php:221
 msgid "Use tags"
 msgstr "استفاده تگ"
 
-#: additional/mobile-login/mobile-login.php:181 rewrite/rewrite.php:360
+#: additional/mobile-login/mobile-login.php:222 rewrite/rewrite.php:364
 msgid "First name"
 msgstr "نام"
 
-#: additional/mobile-login/mobile-login.php:182 rewrite/rewrite.php:363
+#: additional/mobile-login/mobile-login.php:223 rewrite/rewrite.php:367
 msgid "Last name"
 msgstr "نام خانوادگی"
 
-#: additional/mobile-login/mobile-login.php:183
+#: additional/mobile-login/mobile-login.php:224
 msgid "User id"
 msgstr "شناسه کاربر"
 
-#: additional/mobile-login/mobile-login.php:184
+#: additional/mobile-login/mobile-login.php:225
 msgid "Password"
 msgstr "رمز عبور"
 
-#: additional/mobile-login/mobile-login.php:185
+#: additional/mobile-login/mobile-login.php:226
 msgid "UserLogin"
 msgstr "نام کاربری"
 
-#: additional/mobile-login/mobile-login.php:186
+#: additional/mobile-login/mobile-login.php:227
 msgid "Email"
 msgstr "ایمیل"
 
-#: additional/mobile-login/mobile-login.php:187
+#: additional/mobile-login/mobile-login.php:228
 msgid "Code"
 msgstr "کد"
 
-#: additional/mobile-login/mobile-login.php:193
+#: additional/mobile-login/mobile-login.php:234
 msgid "Forget Password"
 msgstr "فراموشی رمز عبور"
 
-#: additional/mobile-login/mobile-login.php:213
+#: additional/mobile-login/mobile-login.php:254
 msgid "Hi [first-name] [last-name], Your New Password is [password]"
 msgstr "سلام [first-name] [last-name] , رمز عبور جدید شما  [password] می باشد"
 
-#: additional/mobile-login/mobile-login.php:223
+#: additional/mobile-login/mobile-login.php:264
 msgid "New user register"
 msgstr "ثبت نام کاربر جدید"
 
-#: additional/mobile-login/mobile-login.php:243
+#: additional/mobile-login/mobile-login.php:284
 msgid ""
 "Hi [first-name] [last-name], Your login profile is, username: [user-login] "
 "and password: [password]"
@@ -126,37 +135,37 @@ msgstr ""
 "سلام [first-name] [last-name] , اطلاعات ورود شما به سایت شامل نام کاربری: "
 "[user-login] و رمز عبور [password] می باشد"
 
-#: additional/mobile-login/mobile-login.php:253
+#: additional/mobile-login/mobile-login.php:294
 msgid "New user register Code"
 msgstr "کد احراز هویت ثبت نام کاربر"
 
-#: additional/mobile-login/mobile-login.php:273
+#: additional/mobile-login/mobile-login.php:314
 msgid "Your register code is: [code]"
 msgstr "کد احراز هویت ثبت نام شما:  [code]"
 
-#: additional/mobile-login/mobile-login.php:741 hook/admin-screen.php:131
+#: additional/mobile-login/mobile-login.php:782 hook/admin-screen.php:131
 msgid ""
 "<p><strong>خطا</strong>: لطفا از خط تیره به جای قاصله در نام کاربری استفاده "
 "کنید</p>"
 msgstr ""
 
-#: additional/mobile-login/mobile-login.php:752 hook/admin-screen.php:137
+#: additional/mobile-login/mobile-login.php:793 hook/admin-screen.php:137
 msgid "<p><strong>خطا</strong>: "
 msgstr ""
 
-#: additional/mobile-login/mobile-login.php:759 hook/admin-screen.php:144
+#: additional/mobile-login/mobile-login.php:800 hook/admin-screen.php:144
 msgid "<p><strong>خطا</strong>: لطفا نام را وارد نمایید</p>"
 msgstr ""
 
-#: additional/mobile-login/mobile-login.php:762 hook/admin-screen.php:147
+#: additional/mobile-login/mobile-login.php:803 hook/admin-screen.php:147
 msgid "<p><strong>خطا</strong>: نام میبایست فارسی باشد</p>"
 msgstr ""
 
-#: additional/mobile-login/mobile-login.php:768 hook/admin-screen.php:153
+#: additional/mobile-login/mobile-login.php:809 hook/admin-screen.php:153
 msgid "<p><strong>خطا</strong>: لطفا نام خانوادگی را وارد نمایید</p>"
 msgstr ""
 
-#: additional/mobile-login/mobile-login.php:771 hook/admin-screen.php:156
+#: additional/mobile-login/mobile-login.php:812 hook/admin-screen.php:156
 msgid "<p><strong>خطا</strong>: نام خانوادگی میبایست فارسی باشد</p>"
 msgstr ""
 
@@ -180,56 +189,56 @@ msgstr "آری"
 msgid "You have successfully logged out"
 msgstr "شما با موفقیت خارج شده اید"
 
-#: rewrite/rewrite.php:58 rewrite/rewrite.php:204
+#: rewrite/rewrite.php:62 rewrite/rewrite.php:208
 msgid "username"
 msgstr "نام کاربری"
 
-#: rewrite/rewrite.php:63
+#: rewrite/rewrite.php:67
 msgid "password"
 msgstr "رمز عبور"
 
-#: rewrite/rewrite.php:85
+#: rewrite/rewrite.php:89
 msgid "Invalid username, email address or incorrect password."
 msgstr "نام کاربری ، ایمیل یا رمز عبور اشتباه می باشد."
 
-#: rewrite/rewrite.php:108
+#: rewrite/rewrite.php:112
 msgid "You have been successfully logged out"
 msgstr "شما با موفقیت خارج شده اید"
 
-#: rewrite/rewrite.php:168
+#: rewrite/rewrite.php:135
+msgid "user_value"
+msgstr "نام کاربری"
+
+#: rewrite/rewrite.php:172
 msgid "No username or email found."
 msgstr "نام کاربری یا ایمیل یافت نشد."
 
-#: rewrite/rewrite.php:211
-msgid "This username is already registered."
-msgstr "این نام کاربری قبلا ثبت شده است."
-
-#: rewrite/rewrite.php:227 rewrite/rewrite.php:382
+#: rewrite/rewrite.php:231 rewrite/rewrite.php:386
 msgid "Invalid email address."
 msgstr "آدرس ایمیل نامعتبر هست."
 
-#: rewrite/rewrite.php:235 rewrite/rewrite.php:390
+#: rewrite/rewrite.php:239 rewrite/rewrite.php:394
 msgid "This email is already registered."
 msgstr "این ایمیل قبلا ثبت شده است."
 
-#: rewrite/rewrite.php:301
+#: rewrite/rewrite.php:305
 msgid "Passwords Don't Match"
 msgstr "رمز های عبور وارد شده مطابقت ندارند."
 
-#: rewrite/rewrite.php:311
+#: rewrite/rewrite.php:315
 #, php-format
 msgid "Password must be at least %s characters long."
 msgstr "تعداد کاراکتر رمز عبور حداقل می بایست %s  کاراکتر باشد"
 
-#: rewrite/rewrite.php:322
+#: rewrite/rewrite.php:326
 msgid "Your current password is incorrect."
 msgstr "رمز عبور فعلی شما اشتباه می باشد."
 
-#: rewrite/rewrite.php:334
+#: rewrite/rewrite.php:338
 msgid "Password changed successfully"
 msgstr "رمز عبور با موفقیت تغییر یافت."
 
-#: rewrite/rewrite.php:413
+#: rewrite/rewrite.php:417
 msgid "User info edited successfully"
 msgstr "مشخصات کاربری با موفقیت ویرایش گردید"
 
