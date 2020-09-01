@@ -188,9 +188,6 @@ class Avatar
      */
     public static function get($user_id = false)
     {
-        if (!$user_id) {
-            $user_id = get_current_user_id();
-        }
         return get_avatar_url($user_id);
     }
 
