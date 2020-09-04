@@ -56,7 +56,7 @@ class Avatar
      */
     public function column($columns)
     {
-        $columns['avatar'] = 'آواتار';
+        $columns['avatar'] = __('Avatar', 'wordpress-acl');
         return $columns;
     }
 
@@ -87,11 +87,11 @@ class Avatar
 
             acf_add_local_field_group(array(
                 'key' => 'group_5e9d94182e428',
-                'title' => 'آواتار',
+                'title' => __('Avatar', 'wordpress-acl'),
                 'fields' => array(
                     array(
                         'key' => 'field_5e9d944d796fc',
-                        'label' => 'آواتار',
+                        'label' => __('Avatar', 'wordpress-acl'),
                         'name' => self::$acf_avatar_field_name,
                         'type' => 'image',
                         'instructions' => '',

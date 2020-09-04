@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ACL in WordPress\n"
-"POT-Creation-Date: 2020-08-25 18:51+0430\n"
-"PO-Revision-Date: 2020-08-25 18:51+0430\n"
+"POT-Creation-Date: 2020-09-04 13:11+0430\n"
+"PO-Revision-Date: 2020-09-04 13:12+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -21,11 +21,16 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: additional/avatar/avatar.php:219
+#: additional/avatar/avatar.php:59 additional/avatar/avatar.php:90
+#: additional/avatar/avatar.php:94
+msgid "Avatar"
+msgstr "آواتار"
+
+#: additional/avatar/avatar.php:216
 msgid "Error in upload avatar file"
 msgstr "خطا در آپلود فایل آواتار رخ داده است"
 
-#: additional/avatar/avatar.php:235
+#: additional/avatar/avatar.php:232
 msgid "File not found"
 msgstr "فایل یافت نشد"
 
@@ -223,12 +228,12 @@ msgstr "این ایمیل قبلا ثبت شده است."
 
 #: rewrite/rewrite.php:305
 msgid "Passwords Don't Match"
-msgstr "رمز های عبور وارد شده مطابقت ندارند."
+msgstr "رمز های عبور وارد شده مطابقت ندارند"
 
 #: rewrite/rewrite.php:315
 #, php-format
 msgid "Password must be at least %s characters long."
-msgstr "تعداد کاراکتر رمز عبور حداقل می بایست %s  کاراکتر باشد"
+msgstr "تعداد کاراکتر رمز عبور حداقل می بایست %s  کاراکتر باشد."
 
 #: rewrite/rewrite.php:326
 msgid "Your current password is incorrect."
@@ -236,7 +241,7 @@ msgstr "رمز عبور فعلی شما اشتباه می باشد."
 
 #: rewrite/rewrite.php:338
 msgid "Password changed successfully"
-msgstr "رمز عبور با موفقیت تغییر یافت."
+msgstr "رمز عبور با موفقیت تغییر یافت"
 
 #: rewrite/rewrite.php:417
 msgid "User info edited successfully"
