@@ -60,16 +60,16 @@ class Admin_Screen
     public function column($columns)
     {
         //$columns['id']           = 'شناسه سیستم';
-        $columns['name-user'] = 'نام و نام خانوادگی';
-        $columns['id'] = 'شناسه';
-        $columns['phone'] = 'موبایل';
-        $columns['date-reg'] = 'تاریخ ثبت';
-        $columns['username'] = 'نام کاربری';
+        $columns['name-user'] = __('Full name', 'wordpress-acl');
+        $columns['id'] = __('ID', 'wordpress-acl');
+        $columns['phone'] = __('Mobile', 'wordpress-acl');
+        $columns['date-reg'] = __('Register date', 'wordpress-acl');
+        $columns['username'] = __('Username', 'wordpress-acl');
 
         unset($columns['posts']);
         unset($columns['name']);
         unset($columns['role']);
-        unset($columns['email']);
+        //unset($columns['email']);
         return $columns;
     }
 
@@ -82,7 +82,12 @@ class Admin_Screen
             return $user_id;
         }
         if ('phone' == $column_name) {
-            return Helper::get_user_phone_number($user_id);
+            $phone = Helper::get_user_phone_number($user_id);
+            if (empty($phone)) {
+                return '-';
+            } else {
+                return $phone;
+            }
         }
         if ('name-user' == $column_name) {
             return Helper::get_user_full_name($user_id);
