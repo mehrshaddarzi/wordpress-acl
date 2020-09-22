@@ -186,8 +186,8 @@ class WordPress_ACL
          */
         require_once self::$plugin_path . '/additional/avatar/avatar.php';
         require_once self::$plugin_path . '/additional/avatar/rewrite.php';
-        require_once self::$plugin_path . '/additional/mobile-login/mobile-login.php';
-        require_once self::$plugin_path . '/additional/mobile-login/rewrite.php';
+        //require_once self::$plugin_path . '/additional/mobile-login/mobile-login.php';
+        //require_once self::$plugin_path . '/additional/mobile-login/rewrite.php';
         require_once self::$plugin_path . '/additional/favorite/favorite.php';
         require_once self::$plugin_path . '/additional/favorite/rewrite.php';
 

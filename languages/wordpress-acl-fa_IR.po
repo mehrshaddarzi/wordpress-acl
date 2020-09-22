@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ACL in WordPress\n"
-"POT-Creation-Date: 2020-09-04 13:11+0430\n"
-"PO-Revision-Date: 2020-09-04 13:12+0430\n"
+"POT-Creation-Date: 2020-09-06 14:21+0430\n"
+"PO-Revision-Date: 2020-09-06 14:30+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -189,6 +189,26 @@ msgstr "خیر"
 #: class/email.php:39
 msgid "yes"
 msgstr "آری"
+
+#: hook/admin-screen.php:63
+msgid "Full name"
+msgstr "نام و نام خانوادگی"
+
+#: hook/admin-screen.php:64
+msgid "ID"
+msgstr "شناسه"
+
+#: hook/admin-screen.php:65
+msgid "Mobile"
+msgstr "شماره همراه"
+
+#: hook/admin-screen.php:66
+msgid "Register date"
+msgstr "تاریخ ثبت نام"
+
+#: hook/admin-screen.php:67
+msgid "Username"
+msgstr "نام کاربری"
 
 #: rewrite/rewrite.php:16
 msgid "You have successfully logged out"

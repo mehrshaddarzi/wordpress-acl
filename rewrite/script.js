@@ -50,7 +50,7 @@ jQuery(document).ready(function ($) {
 
             // arg
             let arg = {
-                'user_login': $user_login
+                /*'user_login': $user_login*/
             };
 
             // Extra parameters

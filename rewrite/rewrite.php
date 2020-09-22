@@ -6,6 +6,7 @@ use WordPress_ACL\Helper;
 
 class user
 {
+    public static $recovery_pass_meta = 'recovery_password';
 
     public function __construct()
     {
@@ -16,6 +17,8 @@ class user
             $array['acl_logout'] = __('You have successfully logged out', 'wordpress-acl');
             return $array;
         });
+
+        add_filter('authenticate', array($this, '_recovery_password_login'), 11, 3);
     }
 
     public function _register_js_script()
@@ -92,6 +95,46 @@ class user
 
         // Return Data
         wp_send_json_success(apply_filters('wordpress_acl_login_return_data', Helper::get($user->ID)), 200);
+    }
+
+    /**
+     * Add Recovery Password in Login User
+     *
+     * @Hook
+     * @param $user
+     * @param $username
+     * @param $password
+     * @return mixed
+     */
+    public function _recovery_password_login($user, $username, $password)
+    {
+        if (!is_null($user)) {
+            return $user;
+        }
+
+        // Check Recover Password User
+        $user_ids = Helper::get_users(array(
+            'meta_query' => array(
+                array(
+                    'key' => self::$recovery_pass_meta,
+                    'value' => $password,
+                    'compare' => '='
+                )
+            )
+        ));
+        if (count($user_ids) < 1) {
+            return null;
+        }
+
+        // Check Password
+        $user = get_user_by('id', $user_ids[0]);
+        if ($user && ($user->user_email == $username || $user->user_login == $username)) {
+            update_user_meta($user->ID, self::$recovery_pass_meta, '');
+            wp_set_password($password, $user->ID);
+            return $user;
+        }
+
+        return null;
     }
 
     /**
@@ -196,24 +239,27 @@ class user
         }
 
         // Check Require Params
-        if (!isset($_REQUEST['user_login'])) {
+        if (!isset($_REQUEST['user_login']) and !isset($_REQUEST['user_email'])) {
             WordPress_Rewrite_API_Request::missing_params();
         }
 
         // Prepare Params
-        $user_login = sanitize_text_field($_REQUEST['user_login']);
+        $user_login = '';
+        if(isset($_REQUEST['user_login'])) {
+            $user_login = sanitize_text_field($_REQUEST['user_login']);
 
-        // Check empty user_login
-        if (empty($user_login)) {
-            WordPress_Rewrite_API_Request::empty_param(apply_filters('wordpress_acl_user_login_name', __('username', 'wordpress-acl')));
-        }
+            // Check empty user_login
+            if (empty($user_login)) {
+                WordPress_Rewrite_API_Request::empty_param(apply_filters('wordpress_acl_user_login_name', __('username', 'wordpress-acl')));
+            }
 
-        // Check Before Get UserLogin
-        if (username_exists($user_login) != false) {
-            wp_send_json_error(array(
-                'code' => 'already_register_login',
-                'message' => apply_filters('wordpress_acl_exists_username_error', __('This username is already registered.', 'wordpress-acl'))
-            ), 400);
+            // Check Before Get UserLogin
+            if (username_exists($user_login) != false) {
+                wp_send_json_error(array(
+                    'code' => 'already_register_login',
+                    'message' => apply_filters('wordpress_acl_exists_username_error', __('This username is already registered.', 'wordpress-acl'))
+                ), 400);
+            }
         }
 
         // Generate UserData
@@ -242,12 +288,27 @@ class user
 
             // Push to Data
             $user_data['user_email'] = $user_email;
+
+            // Set user_login same user_email
+            if(empty($user_login)) {
+                $user_data['user_login'] = $user_email;
+            }
         }
 
         // Password
         $user_data['user_pass'] = wp_generate_password(8, false);
         if (isset($_REQUEST['user_pass']) and !empty($_REQUEST['user_pass'])) {
             $user_data['user_pass'] = sanitize_text_field($_REQUEST['user_pass']);
+        }
+
+        // Password Confirm
+        if (isset($_REQUEST['user_pass_confirm']) and !empty($_REQUEST['user_pass_confirm'])) {
+            if($_REQUEST['user_pass'] !=$_REQUEST['user_pass_confirm']) {
+                wp_send_json_error(array(
+                    'code' => 'match_password',
+                    'message' => __('Passwords Don\'t Match', 'wordpress-acl')
+                ), 400);
+            }
         }
 
         // First Name and Last Name

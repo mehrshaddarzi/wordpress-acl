@@ -17,6 +17,9 @@ class Sign
         // Register User
         add_action('user_register', array($this, 'register'), 10, 1);
 
+        // Set auto Login after Register
+        add_action('user_register', array($this, 'auto_login_after_register'), 99, 1);
+
         // Set Time Login for Remember
         add_filter('auth_cookie_expiration', array($this, 'auth_cookie_expiration_filter_5587'), 10, 3);
 
@@ -29,6 +32,17 @@ class Sign
         add_filter('send_email_change_email', '__return_false');
         add_filter('wp_new_user_notification_email', '__return_false');
         add_filter('wp_new_user_notification_email_admin', '__return_false');
+    }
+
+    /**
+     * Auto Login
+     *
+     * @param $user_id
+     */
+    function auto_login_after_register($user_id) {
+        if (!is_admin() and !is_user_logged_in()) {
+            Helper::set_current_user($user_id, true);
+        }
     }
 
     /**
